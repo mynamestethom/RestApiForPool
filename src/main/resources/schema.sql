@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS registration;
+DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS work_time;
 DROP TABLE IF EXISTS clients;
 
@@ -22,6 +22,8 @@ CREATE TABLE reservations(
     client_id BIGINT NOT NULL,
     registration_date DATE NOT NULL,
     registration_time TIME NOT NULL,
+    canceled BOOLEAN DEFAULT FALSE,
+    cancel_reason VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (client_id, registration_date, registration_time),
     FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
